@@ -29,4 +29,5 @@ public class Post {
     @ManyToOne
     private User user;
 
+
 }
