@@ -1,0 +1,10 @@
+package com.yyy.social_network.service;
+
+import com.yyy.social_network.model.Post;
+
+import java.util.List;
+
+public interface PostService {
+    void save(Post post);
+    List<Post> findAll();
+}
