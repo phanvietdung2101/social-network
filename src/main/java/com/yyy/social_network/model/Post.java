@@ -36,12 +36,6 @@ public class Post {
     @LastModifiedDate
     private Date lastModifiedDate;
 
-    @Column(columnDefinition = "int default 0")
-    private Long likeQuantity;
-
-    @Column(columnDefinition = "int default 0")
-    private Long commentQuantity;
-
     @OneToMany
     private List<Like> likeList;
 

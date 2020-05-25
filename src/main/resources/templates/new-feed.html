@@ -413,9 +413,9 @@ News Feed Section
                         </div><!--/ cardbox-base -->
                         <div class="cardbox-like">
                             <ul>
-                                <li><a th:onclick="'like(\''+${post.id}+'\',\''+ 'dung'+ '\')'"><i class="fa fa-heart"></i></a><span class="likeQuantity" th:text="${post.likeQuantity}"></span></li>
+                                <li><a th:onclick="'like(\''+${post.id}+'\',\''+ 'dung'+ '\')'"><i class="fa fa-heart"></i></a><span class="likeQuantity" th:text="${post.likeList.size()}"></span></li>
                                 <li><a onclick="" title="" class="com"><i class="fa fa-comments"></i></a> <span
-                                        class="span-last" th:text="${post.commentQuantity}"></span></li>
+                                        class="span-last" th:text="${post.commentList.size()}"></span></li>
                             </ul>
                         </div><!--/ cardbox-like -->
 

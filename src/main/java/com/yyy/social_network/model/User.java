@@ -45,12 +45,9 @@ public class User {
     @OneToMany
     private List<User> followingList;
 
-    private long followingQuantity;
-
     @OneToMany
     private List<User> followersList;
 
-    private long followersQuantity;
 
 
 
