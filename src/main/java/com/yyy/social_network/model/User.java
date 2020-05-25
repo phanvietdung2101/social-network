@@ -2,6 +2,7 @@ package com.yyy.social_network.model;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,6 +17,9 @@ public class User {
     @Email
     @NotEmpty
     private String email;
+
+    @URL
+    private String avatarUrl;
 
     @NotNull
     @Length(min = 4,max = 30)

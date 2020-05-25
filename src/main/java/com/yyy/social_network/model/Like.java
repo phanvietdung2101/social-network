@@ -18,8 +18,5 @@ public class Like {
     @ManyToOne
     @NotNull
     private User user;
-
-    @ManyToOne
-    @NotNull
-    private Post post;
+    
 }

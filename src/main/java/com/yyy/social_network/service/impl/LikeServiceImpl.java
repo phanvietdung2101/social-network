@@ -17,10 +17,6 @@ public class LikeServiceImpl implements LikeService {
         likeRepository.save(like);
     }
 
-    @Override
-    public List<Like> findAllByPostId(Long postId) {
-        return likeRepository.findAllByPostId(postId);
-    }
 
 
 }
