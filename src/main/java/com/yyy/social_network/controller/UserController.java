@@ -27,4 +27,9 @@ public class UserController {
         userService.save(user);
         return "redirect:/login";
     }
+
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "login";
+    }
 }

@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
                 .antMatchers("/upload").hasRole("USER")
-                .and().formLogin()
+                .and().formLogin().loginPage("/login")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 }

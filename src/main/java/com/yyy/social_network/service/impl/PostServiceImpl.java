@@ -19,6 +19,8 @@ public class PostServiceImpl implements PostService {
     public void create(Post post) {
         long currentTime = System.currentTimeMillis();
         Date currentDate = new Date(currentTime);
+        post.setCommentQuantity(0L);
+        post.setLikeQuantity(0L);
         post.setCreatedDate(currentDate);
         post.setLastModifiedDate(currentDate);
         postRepository.save(post);
