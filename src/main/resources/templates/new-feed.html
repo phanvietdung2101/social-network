@@ -372,7 +372,7 @@ News Feed Section
                             <!-- END dropdown-->
                             <div class="media m-0">
                                 <div class="d-flex mr-3">
-                                    <a href="#"><img class="img-responsive img-circle" src="assets/img/users/18.jpg"
+                                    <a href="#"><img class="img-responsive img-circle" th:src="@{${post.user.avatarUrl}}"
                                                      alt="User"></a>
                                 </div>
                                 <div class="media-body">
@@ -413,8 +413,8 @@ News Feed Section
                         </div><!--/ cardbox-base -->
                         <div class="cardbox-like">
                             <ul>
-                                <li><a href="#"><i class="fa fa-heart"></i></a><span th:text="${post.likeQuantity}"></span></li>
-                                <li><a href="#" title="" class="com"><i class="fa fa-comments"></i></a> <span
+                                <li><a th:onclick="'like(\''+${post.id}+'\',\''+${#authentication.name}+'\')'"><i class="fa fa-heart"></i></a><span th:text="${post.likeQuantity}"></span></li>
+                                <li><a onclick="" title="" class="com"><i class="fa fa-comments"></i></a> <span
                                         class="span-last" th:text="${post.commentQuantity}"></span></li>
                             </ul>
                         </div><!--/ cardbox-like -->
@@ -637,6 +637,7 @@ Scripts
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="../src/main/resources/assets/js/base.js"></script>
 <script src="assets/plugins/slimscroll/jquery.slimscroll.js"></script>
+
 <script>
     $('#Slim,#Slim2').slimScroll({
         height: "auto",
@@ -645,6 +646,26 @@ Scripts
         alwaysVisible: true,
         size: "8px",
     });
+
+    function like(postId,username) {
+        let urlLike = "/api/like"
+        let json = {
+            postId,
+            username
+        }
+        $.ajax({
+            type: "POST",
+            url: urlLike,
+            data: JSON.stringify(json),
+            success: function () {
+                $(this.parent().children("span").val(123))
+            }
+        })
+
+    }
+
+
+
 </script>
 
 </body>

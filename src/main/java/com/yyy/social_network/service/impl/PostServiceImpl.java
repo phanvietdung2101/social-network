@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -37,5 +38,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAll() {
         return (List<Post>) postRepository.findAll();
+    }
+
+    @Override
+    public Post findPostById(Long id) {
+        Optional<Post> optionalPost = postRepository.findById(id);
+        if(optionalPost.isPresent()){
+            return optionalPost.get();
+        }
+        throw new RuntimeException("this post is not found");
     }
 }

@@ -30,5 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/upload").hasRole("USER")
                 .and().formLogin().loginPage("/login")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        http.csrf().disable();
     }
 }
