@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Entity
-@Table
 @Data
 public class User {
     @Id
@@ -29,5 +28,6 @@ public class User {
     @NotNull
     @ManyToOne
     private Role role;
+
 
 }

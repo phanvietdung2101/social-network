@@ -1,21 +1,23 @@
 package com.yyy.social_network.model;
 
 import lombok.Data;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-public class Comment {
-
+public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
-    private String text;
+    @ManyToOne
+    @NotNull
+    private User user;
 
     @ManyToOne
+    @NotNull
     private Post post;
 }

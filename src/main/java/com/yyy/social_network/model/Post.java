@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +22,9 @@ public class Post {
     @NotEmpty
     private String text;
 
-    @Column(columnDefinition = "int default 0")
-    private long liked_quantity;
-
     @ManyToOne
     private User user;
 
-
+    @CreatedDate
+    private Date date;
 }

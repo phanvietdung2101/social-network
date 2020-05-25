@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table
 @Data
 public class Role implements GrantedAuthority {
     @Id
