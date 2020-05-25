@@ -46,6 +46,7 @@ public class HomeController {
 
         List<Post> userPostList = postService.findAllByUser(user);
         modelAndView.addObject(userPostList);
+        return modelAndView;
     }
 
 

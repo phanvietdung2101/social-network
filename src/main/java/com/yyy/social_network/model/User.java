@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,6 +41,18 @@ public class User {
     private String bio;
 
     private String personalWebsite;
+
+    @OneToMany
+    private List<User> followingList;
+
+    private long followingQuantity;
+
+    @OneToMany
+    private List<User> followersList;
+
+    private long followersQuantity;
+
+
 
 
 
