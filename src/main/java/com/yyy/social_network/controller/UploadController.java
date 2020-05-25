@@ -38,7 +38,7 @@ public class UploadController {
             return "redirect:/login";
         }
         post.setUser(user);
-        postService.save(post);
+        postService.create(post);
         return "redirect:/";
     }
 }
