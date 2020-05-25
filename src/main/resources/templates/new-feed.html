@@ -413,7 +413,7 @@ News Feed Section
                         </div><!--/ cardbox-base -->
                         <div class="cardbox-like">
                             <ul>
-                                <li><a th:onclick="'like(\''+${post.id}+'\',\''+${#authentication.name}+'\')'"><i class="fa fa-heart"></i></a><span th:text="${post.likeQuantity}"></span></li>
+                                <li><a th:onclick="'like(\''+${post.id}+'\',\''+ 'dung'+ '\')'"><i class="fa fa-heart"></i></a><span class="likeQuantity" th:text="${post.likeQuantity}"></span></li>
                                 <li><a onclick="" title="" class="com"><i class="fa fa-comments"></i></a> <span
                                         class="span-last" th:text="${post.commentQuantity}"></span></li>
                             </ul>
@@ -648,17 +648,21 @@ Scripts
     });
 
     function like(postId,username) {
-        let urlLike = "/api/like"
+        let urlLike = "/api/like/" + postId
         let json = {
-            postId,
-            username
+            username : username
         }
+        let currentEle = $(this);
+        let parentEle = $(currentEle).parent();
+        let spanEle = $(parentEle).children(".likeQuantity");
+        console.log(spanEle.text())
         $.ajax({
             type: "POST",
             url: urlLike,
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(json),
             success: function () {
-                $(this.parent().children("span").val(123))
+                spanEle.text("123");
             }
         })
 

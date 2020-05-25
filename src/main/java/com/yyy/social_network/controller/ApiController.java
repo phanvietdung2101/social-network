@@ -8,6 +8,7 @@ import com.yyy.social_network.service.LikeService;
 import com.yyy.social_network.service.PostService;
 import com.yyy.social_network.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +22,7 @@ public class ApiController {
     @Autowired
     PostService postService;
 
-    @PostMapping("/api/like/{postId}")
+    @PostMapping(value = "/api/like/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateLike(@PathVariable long postId, @RequestBody User user){
         Post post = postService.findPostById(postId);
         User currentUser = userService.findUserByUsername(user.getUsername());
