@@ -1,6 +1,7 @@
 package com.yyy.social_network.service.impl;
 
 import com.yyy.social_network.model.Post;
+import com.yyy.social_network.model.User;
 import com.yyy.social_network.repository.PostRepository;
 import com.yyy.social_network.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,10 @@ public class PostServiceImpl implements PostService {
             return optionalPost.get();
         }
         throw new RuntimeException("this post is not found");
+    }
+
+    @Override
+    public List<Post> findAllByUser(User user) {
+        return postRepository.findAllByUser(user);
     }
 }

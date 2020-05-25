@@ -18,6 +18,10 @@ public class User {
     @NotEmpty
     private String email;
 
+    @NotEmpty
+    @Length(min = 4,max = 30)
+    private String fullName;
+
     @URL
     private String avatarUrl;
 
@@ -32,6 +36,11 @@ public class User {
     @NotNull
     @ManyToOne
     private Role role;
+
+    private String bio;
+
+    private String personalWebsite;
+
 
 
 }

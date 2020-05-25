@@ -26,8 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/upload").hasRole("USER")
+                .antMatchers("/").permitAll()
+                .antMatchers("/upload**").hasRole("USER")
+                .antMatchers("/profile**").hasRole("USER")
                 .and().formLogin().loginPage("/login")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
         http.csrf().disable();
