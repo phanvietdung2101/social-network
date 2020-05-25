@@ -45,4 +45,7 @@ public class Post {
     @OneToMany
     private List<Like> likeList;
 
+    @OneToMany
+    private List<Comment> commentList;
+
 }

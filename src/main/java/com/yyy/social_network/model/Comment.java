@@ -15,7 +15,4 @@ public class Comment {
 
     @NotEmpty
     private String text;
-
-    @ManyToOne
-    private Post post;
 }
