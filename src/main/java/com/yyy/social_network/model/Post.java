@@ -27,4 +27,13 @@ public class Post {
 
     @CreatedDate
     private Date date;
+
+    @NotEmpty
+    @Column(columnDefinition = "int default 0")
+    private Long likeQuantity;
+
+    @NotEmpty
+    @Column(columnDefinition = "int default 0")
+    private Long commentQuantity;
+
 }
