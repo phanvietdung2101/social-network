@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.Temporal;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -81,6 +87,16 @@ public class ApiController {
         User user = userService.findUserByUsername(principal.getName());
         Post post = postService.findPostById(postId);
         ModelAndView modelAndView = new ModelAndView("component/modal");
+
+
+        Date input = post.getCreatedDate();
+        LocalDateTime createdTime = input.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(createdTime,now);
+        Long minute = duration.toMinutes();
+
+        modelAndView.addObject("minute",minute);
         modelAndView.addObject("post",post);
         modelAndView.addObject("user",user);
         return modelAndView;
