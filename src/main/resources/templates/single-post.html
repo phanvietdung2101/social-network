@@ -291,7 +291,7 @@ Modal Section
 			   </span>
                                                 <div class="comment-body">
                                                     <input id="comment" class="form-control input-sm" type="text" placeholder="Write your comment..." >
-                                                    <button type="button" th:onclick="'comment(\'' + ${post.id} + '\')'">Send</button>
+                                                    <input class="hidden" th:value="${post.id}" id="postId">
                                                 </div><!--/ comment-body -->
                                             </li>
                                         </ul>
@@ -344,6 +344,14 @@ Scripts
 
         })
     }
+
+    $('#comment').keypress(function (e) {
+        if (e.which == 13) {
+            let postId = $('#postId').val();
+            comment(postId);
+            return false;
+        }
+    });
 </script>
 
 </body>
