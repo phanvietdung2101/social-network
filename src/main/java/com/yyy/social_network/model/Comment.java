@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -15,4 +16,8 @@ public class Comment {
 
     @NotEmpty
     private String text;
+
+    @NotNull
+    @ManyToOne
+    private User user;
 }

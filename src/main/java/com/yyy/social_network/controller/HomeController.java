@@ -52,10 +52,12 @@ public class HomeController {
     }
 
     @GetMapping("/post/{postId}")
-    public ModelAndView showSinglePost(@PathVariable long postId){
+    public ModelAndView showSinglePost(@PathVariable long postId,Principal principal){
         ModelAndView modelAndView = new ModelAndView("single-post");
         Post post = postService.findPostById(postId);
         modelAndView.addObject("post",post);
+        User user = userService.findUserByUsername(principal.getName());
+        modelAndView.addObject("user",user);
         return modelAndView;
     }
 
