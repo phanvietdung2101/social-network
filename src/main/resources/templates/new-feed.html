@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <!-- ==============================================
@@ -220,14 +220,18 @@ Navigation Section
 		   </span>
                         </a>
                         <div class="dropdown-menu w dropdown-menu-scale pull-right">
-                            <a class="dropdown-item" href="#"><span>New Story</span></a>
-                            <a class="dropdown-item" href="#"><span>Become a Member</span></a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><span>Profile</span></a>
-                            <a class="dropdown-item" href="#"><span>Settings</span></a>
-                            <a class="dropdown-item" href="#">Need help?</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Sign out</a>
+                            <div th:unless="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                                <a class="dropdown-item" href="/register"><span>Become a Member</span></a>
+                                <a class="dropdown-item" href="/login"><span>Sign in</span></a>
+                            </div>
+                            <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+                                <a class="dropdown-item" th:text="'Hello, ' + ${#authentication.name}"><span></span></a>
+                                <a class="dropdown-item" href="/upload"><span>Upload</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/profile"><span>Profile</span></a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout">Sign out</a>
+                            </div>
                         </div>
                     </li><!-- /navbar-item -->
 
@@ -662,6 +666,19 @@ Scripts
                 let currentEle = $("#" + elementId);
                 let spanEle = $(currentEle).find(".likeQuantity");
                 spanEle.text(data.likeList.length);
+            }
+        })
+    }
+    // Modal
+
+    function getPostPopup(postId) {
+        let url = "api/post/" + postId
+        $.ajax({
+            type: "GET",
+            url: url,
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+
             }
         })
     }
