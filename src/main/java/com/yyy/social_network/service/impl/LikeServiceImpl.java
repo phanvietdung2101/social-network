@@ -19,6 +19,4 @@ public class LikeServiceImpl implements LikeService {
         likeRepository.save(like);
     }
 
-
-
 }
