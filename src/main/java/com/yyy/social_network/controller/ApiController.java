@@ -23,7 +23,7 @@ public class ApiController {
     PostService postService;
 
     @PostMapping(value = "/api/like/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateLike(@PathVariable long postId, @RequestBody User user){
+    public Post updateLike(@PathVariable long postId, @RequestBody User user){
         Post post = postService.findPostById(postId);
         User currentUser = userService.findUserByUsername(user.getUsername());
 
@@ -33,5 +33,6 @@ public class ApiController {
 
         post.getLikeList().add(like);
         postService.save(post);
+        return post;
     }
 }

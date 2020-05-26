@@ -353,7 +353,7 @@ News Feed Section
             </div><!--/ col-lg-3 -->
             <div class="col-lg-6">
                 <div id="postList" th:each="post : ${postList}">
-                    <div class="cardbox">
+                    <div class="cardbox" th:id="'post' + ${post.id}">
 
                         <div class="cardbox-heading">
                             <!-- START dropdown-->
@@ -637,7 +637,6 @@ Scripts
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="../src/main/resources/assets/js/base.js"></script>
 <script src="assets/plugins/slimscroll/jquery.slimscroll.js"></script>
-
 <script>
     $('#Slim,#Slim2').slimScroll({
         height: "auto",
@@ -647,25 +646,24 @@ Scripts
         size: "8px",
     });
 
+
     function like(postId,username) {
         let urlLike = "/api/like/" + postId
         let json = {
             username : username
         }
-        let currentEle = $(this);
-        let parentEle = $(currentEle).parent();
-        let spanEle = $(parentEle).children(".likeQuantity");
-        console.log(spanEle.text())
         $.ajax({
             type: "POST",
             url: urlLike,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(json),
-            success: function () {
-                spanEle.text("123");
+            success: function (data) {
+                let elementId = "post" + data.id;
+                let currentEle = $("#" + elementId);
+                let spanEle = $(currentEle).find(".likeQuantity");
+                spanEle.text(data.likeList.length);
             }
         })
-
     }
 
 

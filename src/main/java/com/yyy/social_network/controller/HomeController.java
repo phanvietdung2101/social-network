@@ -22,7 +22,7 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/","/home"})
     public ModelAndView showHome(){
         ModelAndView modelAndView = new ModelAndView("new-feed");
         List<Post> postList = postService.findAll();
