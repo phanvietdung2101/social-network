@@ -1,9 +1,11 @@
 package com.yyy.social_network.controller;
 
 
+import com.yyy.social_network.model.Comment;
 import com.yyy.social_network.model.Like;
 import com.yyy.social_network.model.Post;
 import com.yyy.social_network.model.User;
+import com.yyy.social_network.service.CommentService;
 import com.yyy.social_network.service.LikeService;
 import com.yyy.social_network.service.PostService;
 import com.yyy.social_network.service.UserService;
@@ -12,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ApiController {
@@ -23,6 +27,9 @@ public class ApiController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    CommentService commentService;
 
     @PostMapping(value = "/api/like/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Post updateLike(Principal principal,@PathVariable long postId, @RequestBody User user){
@@ -52,5 +59,17 @@ public class ApiController {
     public Post getPostById(@PathVariable long postId){
         Post post = postService.findPostById(postId);
         return post;
+    }
+
+    @PutMapping(value = "/api/comment/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<Comment> comment(@PathVariable long postId, @RequestBody Comment comment,Principal principal){
+        User user = userService.findUserByUsername(principal.getName());
+        comment.setUser(user);
+
+        commentService.save(comment);
+        Post post = postService.findPostById(postId);
+        post.getCommentList().add(comment);
+        postService.save(post);
+        return post.getCommentList();
     }
 }

@@ -290,7 +290,8 @@ Modal Section
 				<img class="img-responsive img-circle" th:src="@{${user.avatarUrl}}" alt="Image">
 			   </span>
                                                 <div class="comment-body">
-                                                    <input class="form-control input-sm" type="text" placeholder="Write your comment...">
+                                                    <input id="comment" class="form-control input-sm" type="text" placeholder="Write your comment..." >
+                                                    <button type="button" th:onclick="'comment(\'' + ${post.id} + '\')'">Send</button>
                                                 </div><!--/ comment-body -->
                                             </li>
                                         </ul>
@@ -324,6 +325,25 @@ Scripts
         alwaysVisible: true,
         size:"8px",
     });
+
+    function comment(postId) {
+        let url = "/api/comment/" + postId;
+        let comment = $("#comment").val();
+        let data = {
+            text : comment
+        }
+        $.ajax({
+            type: "PUT",
+            data: JSON.stringify(data),
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (commentList) {
+                console.log(commentList);
+            }
+
+        })
+    }
 </script>
 
 </body>
