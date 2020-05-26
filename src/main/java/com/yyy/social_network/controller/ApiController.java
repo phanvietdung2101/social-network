@@ -32,19 +32,22 @@ public class ApiController {
     CommentService commentService;
 
     @PostMapping(value = "/api/like/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Post updateLike(Principal principal,@PathVariable long postId, @RequestBody User user){
+    public Post updateLike(Principal principal,@PathVariable long postId){
         Post post = postService.findPostById(postId);
-        User currentUser = userService.findUserByUsername(principal.getName());
+        String username = principal.getName();
+        User user = userService.findUserByUsername(username);
 
         Like like = null;
-        try {
-            like = likeService.findLikeByUser(currentUser);
-        } catch (Exception e){
-            System.out.println(e);
+        for(Like each : post.getLikeList())
+        {
+            boolean isLiked = each.getUser().getUsername().equals(username);
+            if(isLiked){
+                like = each;
+            }
         }
         if(like == null){
             like = new Like();
-            like.setUser(currentUser);
+            like.setUser(user);
             likeService.save(like);
             post.getLikeList().add(like);
         } else {
