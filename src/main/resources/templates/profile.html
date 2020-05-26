@@ -213,27 +213,27 @@ Navbar Second Section
 <section class="nav-sec">
     <div class="d-flex justify-content-between">
         <div class="p-2 nav-icon-lg dark-black">
-            <a class="nav-icon" href="photo_home.html"><em class="fa fa-home"></em>
+            <a class="nav-icon" href="/"><em class="fa fa-home"></em>
                 <span>Home</span>
             </a>
         </div>
         <div class="p-2 nav-icon-lg clean-black">
-            <a class="nav-icon" href="photo_explore.html"><em class="fa fa-crosshairs"></em>
+            <a class="nav-icon" href="/explore"><em class="fa fa-crosshairs"></em>
                 <span>Explore</span>
             </a>
         </div>
         <div class="p-2 nav-icon-lg dark-black">
-            <a class="nav-icon" href="photo_upload.html"><em class="fab fa-instagram"></em>
+            <a class="nav-icon" href="/upload"><em class="fab fa-instagram"></em>
                 <span>Upload</span>
             </a>
         </div>
         <div class="p-2 nav-icon-lg clean-black">
-            <a class="nav-icon" href="photo_stories.html"><em class="fa fa-align-left"></em>
+            <a class="nav-icon" href=""><em class="fa fa-align-left"></em>
                 <span>Stories</span>
             </a>
         </div>
         <div class="p-2 nav-icon-lg mint-green">
-            <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
+            <a class="nav-icon" href="/profile"><em class="fa fa-user"></em>
                 <span>Profile</span>
             </a>
         </div>
@@ -295,12 +295,8 @@ News Feed Section
                         <div class="col-lg-6">
                             <a href="#myModal" data-toggle="modal">
                                 <div class="explorebox"
-                                     style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('/assets/img/posts/6.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
+                                     th:style="'background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url(\'' +${post.imageUrl} + '\')  no-repeat;'+
+					  'background-size: cover;					  background-position: center center;					  -webkit-background-size: cover;					  -moz-background-size: cover;					  -o-background-size: cover;'">
                                     <div class="explore-top">
                                         <div class="explore-like"><i class="fa fa-heart"></i> <span th:text="${post.likeList.size()}"></span></div>
                                     </div>
