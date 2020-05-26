@@ -12,9 +12,9 @@ import com.yyy.social_network.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -74,5 +74,15 @@ public class ApiController {
         post.getCommentList().add(comment);
         postService.save(post);
         return post.getCommentList();
+    }
+
+    @GetMapping(value = "/api/postDetail/{postId}",produces = MediaType.TEXT_HTML_VALUE)
+    public ModelAndView postDetail(@PathVariable long postId, Principal principal){
+        User user = userService.findUserByUsername(principal.getName());
+        Post post = postService.findPostById(postId);
+        ModelAndView modelAndView = new ModelAndView("component/modal");
+        modelAndView.addObject("post",post);
+        modelAndView.addObject("user",user);
+        return modelAndView;
     }
 }

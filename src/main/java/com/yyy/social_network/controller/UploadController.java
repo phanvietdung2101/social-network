@@ -41,4 +41,5 @@ public class UploadController {
         postService.create(post);
         return "redirect:/";
     }
+
 }

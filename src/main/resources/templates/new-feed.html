@@ -387,13 +387,13 @@ News Feed Section
                         </div><!--/ cardbox-heading -->
 
                         <div class="cardbox-item">
-                            <a href="#myModal" data-toggle="modal">
+                            <a href="#myModal" data-toggle="modal" onclick="" th:onclick="'postDetail(\''+ ${post.id} +'\')'">
                                 <img class="img-responsive" th:src="@{${post.imageUrl}}" alt="MaterialImg">
                             </a>
                         </div><!--/ cardbox-item -->
                         <div class="cardbox-base">
                             <ul>
-                                <li><a href="#"><img src="assets/img/users/1.jpg" class="img-responsive img-circle"
+                                <li><a href="#"><img src="assets/img/users/ 1.jpg" class="img-responsive img-circle"
                                                      alt="User"></a></li>
                                 <li><a href="#"><img src="assets/img/users/2.jpg" class="img-responsive img-circle"
                                                      alt="User"></a></li>
@@ -641,9 +641,21 @@ Scripts
             }
         })
     }
-    function changeModal(data){
+    function postDetail(postId){
+        let url = "api/postDetail/" + postId;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "html",
+            success: function (res) {
+                $('#myModal').html(res);
+                console.log(res);
+            }
 
+        })
     }
+
+
 
 
 </script>
