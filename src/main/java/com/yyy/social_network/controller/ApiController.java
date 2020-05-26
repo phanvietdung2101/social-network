@@ -45,10 +45,10 @@ public class ApiController {
             likeService.delete(like);
         }
         postService.save(post);
-            return post;
+        return post;
     }
 
-    @GetMapping(value = "/api/post/{postId}",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/post/{postId}")
     public Post getPostById(@PathVariable long postId){
         Post post = postService.findPostById(postId);
         return post;

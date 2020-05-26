@@ -22,6 +22,8 @@ public class HomeController {
     @Autowired
     UserService userService;
 
+
+
     @GetMapping(value = {"/","/home"})
     public ModelAndView showHome(){
         ModelAndView modelAndView = new ModelAndView("new-feed");
@@ -46,6 +48,14 @@ public class HomeController {
 
         List<Post> userPostList = postService.findAllByUser(user);
         modelAndView.addObject("userPostList",userPostList);
+        return modelAndView;
+    }
+
+    @GetMapping("/post/{postId}")
+    public ModelAndView showSinglePost(@PathVariable long postId){
+        ModelAndView modelAndView = new ModelAndView("single-post");
+        Post post = postService.findPostById(postId);
+        modelAndView.addObject("post",post);
         return modelAndView;
     }
 
