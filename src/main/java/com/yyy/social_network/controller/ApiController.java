@@ -104,19 +104,21 @@ public class ApiController {
 
     @PutMapping(value = "/api/follow/{targetId}")
     public void follow(@PathVariable Long targetId, Principal principal){
-        User user1 = userService.findUserByUsername(principal.getName());
-        User user2 = userService.findUserByUserId(targetId);
+        try {
+            User user = userService.findUserByUsername(principal.getName());
+            User targetUser = userService.findUserByUserId(targetId);
 
-        List<User> followingList = user1.getFollowingList();
+            List<User> followingList = user.getFollowingList();
 
+            if (!followingList.contains(targetUser) && (user.getId() != targetUser.getId())) {
+                followingList.add(targetUser);
+                targetUser.getFollowersList().add(user);
+            }
 
-
-        // Check xem da follow hay chua
-        if(!followingList.contains(user2) && (user1.getId() != user2.getId())){
-            followingList.add(user2);
-            user2.getFollowersList().add(user1);
+            userService.save(user);
+            userService.save(targetUser);
+        } catch (Exception e){
+            System.out.println("Loi");;
         }
-        userService.save(user1);
-        userService.save(user2);
     }
 }

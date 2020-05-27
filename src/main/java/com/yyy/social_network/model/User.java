@@ -43,11 +43,11 @@ public class User {
 
     private String personalWebsite;
 
-    @OneToMany
+    @ManyToMany
     @JsonIgnore
     private List<User> followingList;
 
-    @OneToMany
+    @ManyToMany
     @JsonIgnore
     private List<User> followersList;
 
