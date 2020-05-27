@@ -19,7 +19,7 @@
                                                 alt="Image"/></a>
                                 <strong><a href="" th:text="${post.user.username}"></a></strong>
                                 <span th:text="${minute} + ' minutes ago'"></span><br/>
-                                <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
+                                <a th:onclick="'follow(' + ${post.user.id} + ')'" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>
                             </div><!--/ img-poster -->
 
                             <ul class="img-comment-list">
@@ -37,7 +37,7 @@
 
                             <div class="modal-meta-bottom">
                                 <ul>
-                                    <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span
+                                    <li><a class="modal-like" th:onclick="'like(\''+${post.id}+'\',\''+ 'dung'+ '\')'"><i class="fa fa-heart"></i></a><span
                                             class="modal-one" th:text="${post.likeList.size()}"></span> |
                                         <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span th:text="${post.commentList.size()}"> </span>
                                     </li>
@@ -46,8 +46,8 @@
 				<img class="img-responsive img-circle" th:src="@{${user.avatarUrl}}" alt="Image">
 			   </span>
                                         <div class="comment-body">
-                                            <input class="form-control input-sm" type="text"
-                                                   placeholder="Write your comment...">
+                                            <input id="comment" class="form-control input-sm" type="text"
+                                                   placeholder ="Write your comment...">
                                         </div><!--/ comment-body -->
                                     </li>
                                 </ul>

@@ -159,7 +159,7 @@ News Feed Section
                             <!-- END dropdown-->
                             <div class="media m-0">
                                 <div class="d-flex mr-3">
-                                    <a href="#"><img class="img-responsive img-circle" th:src="@{${post.user.avatarUrl}}"
+                                    <a th:href="@{'/profile/'+${post.user.username}}"><img class="img-responsive img-circle" th:src="@{${post.user.avatarUrl}}"
                                                      alt="User"></a>
                                 </div>
                                 <div class="media-body">
@@ -388,6 +388,33 @@ Scripts
             }
         })
     }
+
+    function comment(postId) {
+        let url = "/api/comment/" + postId;
+        let comment = $("#comment").val();
+        let data = {
+            text : comment
+        }
+        $.ajax({
+            type: "PUT",
+            data: JSON.stringify(data),
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (commentList) {
+                console.log(commentList);
+            }
+
+        })
+    }
+
+    $('#comment').keypress(function (e) {
+        if (e.which == 13) {
+            let postId = $('#postId').val();
+            comment(postId);
+            return false;
+        }
+    });
 
 
 

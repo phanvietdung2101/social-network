@@ -47,7 +47,7 @@
 Navigation Section
 =============================================== -->
 <header class="tr-header">
-    <nav class="navbar navbar-default" th:replace="fragments/fragment :: navbar">
+    <nav class="navbar navbar-default" th:replace="fragments/fragment :: navbar"    >
     </nav>
 </header><!-- Page Header -->
 
@@ -130,51 +130,11 @@ News Feed Section
 
                 <div class="suggestion-box full-width">
                     <div class="suggestions-list">
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/1.jpg" alt="">
+                        <div class="suggestion-body" th:each="each,count : ${user.followingList}" >
+                            <img class="img-responsive img-circle" th:src="@{${each.avatarUrl}}" alt="">
                             <div class="name-box">
-                                <h4>Vanessa Wells</h4>
-                                <span>@vannessa</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/2.jpg" alt="">
-                            <div class="name-box">
-                                <h4>Anthony McCartney</h4>
-                                <span>@antony</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/3.jpg" alt="">
-                            <div class="name-box">
-                                <h4>Anna Morgan</h4>
-                                <span>@anna</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/4.jpg" alt="">
-                            <div class="name-box">
-                                <h4>Sean Coleman</h4>
-                                <span>@sean</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/5.jpg" alt="">
-                            <div class="name-box">
-                                <h4>Grace Karen</h4>
-                                <span>@grace</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="/assets/img/users/6.jpg" alt="">
-                            <div class="name-box">
-                                <h4>Clifford Graham</h4>
-                                <span>@clifford</span>
+                                <h4 th:text="${each.fullName}">Vanessa Wells</h4>
+                                <span th:text="${each.username}">@vannessa</span>
                             </div>
                             <span><i class="fa fa-plus"></i></span>
                         </div>

@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="p-2 nav-icon-lg dark-black">
-            <a class="nav-icon" href="/profile"><em class="fa fa-user"></em>
+            <a class="nav-icon" href="/myProfile"><em class="fa fa-user"></em>
                 <span>Profile</span>
             </a>
         </div>
@@ -203,11 +203,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 
                         <span class="avatar w-32">
-                            <img th:src="@{${}}" class="img-resonsive img-circle"
+                            <img src="https://cdn5.vectorstock.com/i/1000x1000/04/09/user-icon-vector-5770409.jpg" class="img-resonsive img-circle"
                                                            width="25" height="25" alt="...">
                         </span>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs" >Alex Grantte</span>
+                        <span class="hidden-xs" th:text="${#authentication.name}">Alex Grantte</span>
                     </a>
                     <div class="dropdown-menu w dropdown-menu-scale pull-right">
                         <div th:unless="${#authorization.expression('hasRole(''ROLE_USER'')')}">

@@ -1,5 +1,6 @@
 package com.yyy.social_network.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -43,9 +44,11 @@ public class User {
     private String personalWebsite;
 
     @OneToMany
+    @JsonIgnore
     private List<User> followingList;
 
     @OneToMany
+    @JsonIgnore
     private List<User> followersList;
 
 

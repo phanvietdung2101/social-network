@@ -86,9 +86,13 @@ public class HomeController {
     }
 
     @GetMapping("/upload")
-    public ModelAndView showUpload(){
+    public ModelAndView showUpload(Principal principal){
         ModelAndView modelAndView = new ModelAndView("photo_upload");
         modelAndView.addObject("post",new Post());
+
+        User user = userService.findUserByUsername(principal.getName());
+        List<Post> userPostList = postService.findAllByUser(user);
+        modelAndView.addObject("userPostList",userPostList);
         return modelAndView;
     }
 
