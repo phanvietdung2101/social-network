@@ -403,6 +403,8 @@ Scripts
             dataType: "json",
             success: function (commentList) {
                 console.log(commentList);
+                location.reload()
+
             }
 
         })
@@ -412,10 +414,6 @@ Scripts
         if (e.which == 13) {
             let postId = $('#postId').val();
             comment(postId);
-
-            setTimeout(function() {
-                window.reload();
-            }, 2000);
 
             return false;
         }
