@@ -5,6 +5,8 @@ import com.yyy.social_network.model.User;
 import com.yyy.social_network.repository.UserRepository;
 import com.yyy.social_network.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public Page<User> find5LatestUser(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     @Override

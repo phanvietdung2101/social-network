@@ -9,4 +9,5 @@ import java.util.List;
 public interface LikeRepository extends PagingAndSortingRepository<Like,Long> {
     Like findLikeByUser(User user);
     Like findLikeByUser_Username(String username);
+
 }

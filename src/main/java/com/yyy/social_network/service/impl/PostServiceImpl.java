@@ -5,6 +5,10 @@ import com.yyy.social_network.model.User;
 import com.yyy.social_network.repository.PostRepository;
 import com.yyy.social_network.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -51,5 +55,11 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findAllByUser(User user) {
         return postRepository.findAllByUser(user);
+    }
+
+    @Override
+    public Page<Post> find5TrendingPost(){
+        Pageable pageable = PageRequest.of(0,5 , Sort.Direction.DESC, "id");
+        return postRepository.findAll(pageable);
     }
 }

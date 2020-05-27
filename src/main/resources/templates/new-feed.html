@@ -215,51 +215,11 @@ News Feed Section
 
                 <div class="suggestion-box full-width">
                     <div class="suggestions-list">
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/17.jpeg" alt="Image">
+                        <div class="suggestion-body" th:each="user : ${latest5User}">
+                            <img class="img-responsive img-circle" th:src="${user.avatarUrl}" alt="Image">
                             <div class="name-box">
-                                <h4>Anthony McCartney</h4>
-                                <span>@antony</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/16.jpg" alt="Image">
-                            <div class="name-box">
-                                <h4>Sean Coleman</h4>
-                                <span>@sean</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/14.jpg" alt="Image">
-                            <div class="name-box">
-                                <h4>Francis Long</h4>
-                                <span>@francis</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/11.jpg" alt="Image">
-                            <div class="name-box">
-                                <h4>Vanessa Wells</h4>
-                                <span>@vannessa</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/9.jpg" alt="Image">
-                            <div class="name-box">
-                                <h4>Anna Morgan</h4>
-                                <span>@anna</span>
-                            </div>
-                            <span><i class="fa fa-plus"></i></span>
-                        </div>
-                        <div class="suggestion-body">
-                            <img class="img-responsive img-circle" src="../static/assets/img/users/8.jpg" alt="Image">
-                            <div class="name-box">
-                                <h4>Clifford Graham</h4>
-                                <span>@clifford</span>
+                                <h4 th:text="${user.fullName}">Anthony McCartney</h4>
+                                <span th:text="'@' + ${user.username}"></span>
                             </div>
                             <span><i class="fa fa-plus"></i></span>
                         </div>
@@ -276,27 +236,8 @@ News Feed Section
 
                 <div class="trending-box">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/17.jpg" class="img-responsive" alt="Image"/></a>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/12.jpg" class="img-responsive" alt="Image"/></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/21.gif" class="img-responsive" alt="Image"/></a>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/23.gif" class="img-responsive" alt="Image"/></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/11.jpg" class="img-responsive" alt="Image"/></a>
-                        </div>
-                        <div class="col-lg-6">
-                            <a href="#"><img src="../static/assets/img/posts/20.jpg" class="img-responsive" alt="Image"/></a>
+                        <div class="col-lg-6" th:each="each : ${latest5TrendingPost}">
+                            <a href="#"><img th:src="@{${each.imageUrl}}" class="img-responsive" alt="Image"/></a>
                         </div>
                     </div>
                 </div>
