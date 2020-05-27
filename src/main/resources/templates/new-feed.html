@@ -412,6 +412,11 @@ Scripts
         if (e.which == 13) {
             let postId = $('#postId').val();
             comment(postId);
+
+            setTimeout(function() {
+                window.reload();
+            }, 2000);
+
             return false;
         }
     });
