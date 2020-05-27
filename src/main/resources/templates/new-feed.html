@@ -221,7 +221,7 @@ News Feed Section
                                 <h4 th:text="${user.fullName}">Anthony McCartney</h4>
                                 <span th:text="'@' + ${user.username}"></span>
                             </div>
-                            <span><i class="fa fa-plus"></i></span>
+                            <span th:onclick="'follow('+ ${user.id} + ')'"><i class="fa fa-plus"></i></span>
                         </div>
                     </div><!--suggestions-list end-->
                 </div>
@@ -236,7 +236,7 @@ News Feed Section
 
                 <div class="trending-box">
                     <div class="row">
-                        <div class="col-lg-6" th:each="each : ${latest5TrendingPost}">
+                        <div class="col-lg-6" th:each="each : ${latest10TrendingPost}">
                             <a href="#"><img th:src="@{${each.imageUrl}}" class="img-responsive" alt="Image"/></a>
                         </div>
                     </div>
@@ -374,6 +374,17 @@ Scripts
             success: function (res) {
                 $('#myModal').html(res);
                 console.log(res);
+            }
+        })
+    }
+
+    function follow(targetId) {
+        let url = "api/follow/" + targetId;
+        $.ajax({
+            type: "PUT",
+            url: url,
+            error: function () {
+                alert("error")
             }
         })
     }

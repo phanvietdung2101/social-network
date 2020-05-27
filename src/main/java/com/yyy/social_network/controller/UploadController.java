@@ -23,23 +23,23 @@ public class UploadController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("/upload")
-    public ModelAndView showUpload(){
-        ModelAndView modelAndView = new ModelAndView("photo_upload");
-        modelAndView.addObject("post",new Post());
-        return modelAndView;
-    }
-
-    @PostMapping("/upload")
-    public String upload(@ModelAttribute Post post, Principal principal) throws Exception {
-        String username = principal.getName();
-        User user =  userService.findUserByUsername(username);
-        if(user == null){
-            return "redirect:/login";
-        }
-        post.setUser(user);
-        postService.create(post);
-        return "redirect:/";
-    }
+//    @GetMapping("/upload")
+//    public ModelAndView showUpload(){
+//        ModelAndView modelAndView = new ModelAndView("photo_upload");
+//        modelAndView.addObject("post",new Post());
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/upload")
+//    public String upload(@ModelAttribute Post post, Principal principal) throws Exception {
+//        String username = principal.getName();
+//        User user =  userService.findUserByUsername(username);
+//        if(user == null){
+//            return "redirect:/login";
+//        }
+//        post.setUser(user);
+//        postService.create(post);
+//        return "redirect:/";
+//    }
 
 }

@@ -12,4 +12,5 @@ public interface UserService {
     void save(User user);
     User findUserByUsername(String username);
     Page<User> find5LatestUser(Pageable pageable);
+    User findUserByUserId(Long id);
 }

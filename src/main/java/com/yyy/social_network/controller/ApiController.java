@@ -101,4 +101,22 @@ public class ApiController {
         modelAndView.addObject("user",user);
         return modelAndView;
     }
+
+    @PutMapping(value = "/api/follow/{targetId}")
+    public void follow(@PathVariable Long targetId, Principal principal){
+        User user1 = userService.findUserByUsername(principal.getName());
+        User user2 = userService.findUserByUserId(targetId);
+
+        List<User> followingList = user1.getFollowingList();
+
+
+
+        // Check xem da follow hay chua
+        if(!followingList.contains(user2) && (user1.getId() != user2.getId())){
+            followingList.add(user2);
+            user2.getFollowersList().add(user1);
+        }
+        userService.save(user1);
+        userService.save(user2);
+    }
 }

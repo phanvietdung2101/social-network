@@ -13,5 +13,5 @@ public interface PostService {
     List<Post> findAll();
     Post findPostById(Long id);
     List<Post> findAllByUser(User user);
-    Page<Post> find5TrendingPost();
+    Page<Post> find10TrendingPost();
 }

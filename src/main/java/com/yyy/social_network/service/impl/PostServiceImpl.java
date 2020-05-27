@@ -58,8 +58,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> find5TrendingPost(){
-        Pageable pageable = PageRequest.of(0,5 , Sort.Direction.DESC, "id");
+    public Page<Post> find10TrendingPost(){
+        Pageable pageable = PageRequest.of(0,10 , Sort.Direction.DESC, "id");
         return postRepository.findAll(pageable);
     }
 }

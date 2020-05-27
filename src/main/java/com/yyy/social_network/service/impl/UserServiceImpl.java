@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -39,6 +40,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public Page<User> find5LatestUser(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public User findUserByUserId(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if(userOptional.isPresent()){
+            return userOptional.get();
+        }
+        throw new RuntimeException("User is not found");
     }
 
     @Override
